@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStuff : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameStuff : MonoBehaviour
     public TextMeshProUGUI ScoreLeftText;
     public TextMeshProUGUI ScoreRightText;
     public TextMeshProUGUI WinnerText;
+    public TextMeshProUGUI TimerText;
 
     Rigidbody2D rb2DBall;
 
@@ -39,14 +41,24 @@ public class GameStuff : MonoBehaviour
         if (ScoreRightData == 11)
         {
             StopAllCoroutines();
-            WinnerText.text = "Right player is the winner!";
+            WinnerText.text = "Right player is the winner!\n Press Space to restart";
             Ball.SetActive(false);
+
+            if (Input.GetKey("space"))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
         else if (ScoreLeftData == 11)
         {
             StopAllCoroutines();
-            WinnerText.text = "Left player is the winner!";
+            WinnerText.text = "Left player is the winner!\n Press Space to restart";
             Ball.SetActive(false);
+
+            if (Input.GetKey("space")) {
+                SceneManager.LoadScene(0);
+            }
+            
         }
         else
         {
@@ -55,6 +67,7 @@ public class GameStuff : MonoBehaviour
                 Ball.transform.position = new Vector2(0, 0);
                 ScoreRightData += 1;
                 ScoreRightText.text = ScoreRightData.ToString();
+               
 
             }
             else if (PositionWallR < PositionBall)
@@ -62,8 +75,11 @@ public class GameStuff : MonoBehaviour
                 Ball.transform.position = new Vector2(0, 0);
                 ScoreLeftData += 1;
                 ScoreLeftText.text = ScoreLeftData.ToString();
-                
+             
+
             }
         }
     }
+
+    
 }
