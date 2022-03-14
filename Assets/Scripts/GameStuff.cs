@@ -30,7 +30,7 @@ public class GameStuff : MonoBehaviour
         rb2DBall.AddForce(Random.insideUnitCircle * ImpulseForceRange + impulso, ForceMode2D.Impulse);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float PositionWallL = WallLeft.transform.position.x;
         float PositionWallR = WallRight.transform.position.x;
@@ -81,5 +81,4 @@ public class GameStuff : MonoBehaviour
         }
     }
 
-    
 }
